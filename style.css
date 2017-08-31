@@ -1,0 +1,46 @@
+
+body {
+	background: pink;
+	background-image: url('https://s3.amazonaws.com/metvnetwork/szJoH-1467904332-467-lists-gilliganfacts_main_1200.jpg');
+	font: 15px/18px Lato, sans-serif;
+	text-align: left;
+	}
+
+h1 {
+	font-size: 20px;
+	font-style: bold;
+}
+
+#scoreboard {
+	background: #fbdf9b;
+	color: #000;
+	border-style: solid;
+	border-width: 4px;
+	border-color: #000; 
+	padding: 20px;
+	float: left;
+	width: 150px;
+	height: 170px;
+	margin: 20px; 
+
+	}
+#center-start {
+	position: relative;
+	background: #fff;
+	color: #000;
+	border-style: solid;
+	border-color: #000;
+	border-width: 4px;
+	width: 500px;
+	height: 100px;
+	margin: 300px;
+	padding: 10px;
+	float: left;
+	clear: both;
+	text-align: center;
+}
+
+.wrapper {
+	position: absolute;
+}
+
