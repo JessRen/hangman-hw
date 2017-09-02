@@ -13,171 +13,117 @@
 		<p class="won">
 			Wins:
 		</p>
-		<p class="guessesLeft">
+		<p class="guessMore">
 			Guesses Left:
 		</p>
-		<p class="letters">
+		<p class="letterBank">
 			Used Letters:
 		</p>
   </div>
 
-	<div id="center-start">Press Any Key To Start !
-	<p id="blanks">_ _ _ _ _ _ _ _</p> <div id="help">Press for Hint: </div>
-</div>
-
+	<div id="center-start">Gilligan's Island Trivia
+	  <div id="help">Press for Word Hint: </div>
+    <div id="word"></div>
+  </div>
 
 
 <script type="text/javascript">
 
+/*===============================================================*/
+// VARIABLES
 
-window.onload = function () {
+//the - hintedWord object - hints and answers for my hangman game
 
-  var playerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+var hinted = {
+  "w1": "Jerry Van Dyke turned down this role",
+  "w2": "Raquel Welch was almost a great...",
+  "w3": "Gilligan's first name",
+  "w4": "He made this show AND the Brady Bunch",
+  "w5": "Our cast impersonated theirs",
+  "w6": "The nearest familiar place to our guestimated island location",
+  "w7": "They star in the 3rd reunion movie"       
+};
+
+var wordByLetter = {
+  w1: ["g","i","l","l","i","g","a","n"],
+  w2: ["g","i","n","g","e","r"],
+  w3: ["w","i","l","l","y"],
+  w4: ["s","c","h","w","a","r","t","z"],
+  w5: ["r","o","s","e","a","n","n","e"],
+  w6: ["h","a","w","a","i","i"],
+  w7: ["g","l","o","b","e","t","r","o","t","t","e","r","s"]
+};
+
+
+//starting with 0 wins
+var wins = 0;
+
+//to hold the index of the current hintedWord
+var wordIndex = 0;
+
+//to hold the subject word count (wordByLetter[0].length)
+var wordCount = wordByLetter[0].length;
+
+//to hold the guessed letters
+var guess = 0;
+
+//to hold/display the guesses available, decrement with guessMore--
+var guessMore = wordByLetter.length + 4;
+
+
+//array of words assigned to hints 
+var hintedArray =     [hinted.w1, 
+                       hinted.w2, 
+                       hinted.w3, 
+                       hinted.w4, 
+                       hinted.w5, 
+                       hinted.w6, 
+                       hinted.w7];
+
+//array of letters-in-spaces
+var wordLettersArray = [wordByLetter.w1, 
+                        wordByLetter.w2, 
+                        wordByLetter.w3, 
+                        wordByLetter.w4, 
+                        wordByLetter.w5, 
+                        wordByLetter.w6,
+                        wordByLetter.w7];
+
+
+/*===============================================================*/
+// FUNCTIONS
+
+word.onclick = function () {
+
+  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
         't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+        if 
   
-  var trivia;            // Array of trivia
-  var getHint ;          // Word Hint
-  var word ;              // Selected word
-  var guess ;             // Guess
-  var guesses = [ ];      // Stored guesses
-  var guessMore ;          // Guesses remaining
-  var wins ;           // Count correct guesses
-  var space;              // Number of spaces in word '-'
 
-  // Get elements
-  var showLeft = document.getElementById("guessesLeft");
-  var getHint = document.getElementById("hint");
-  var showHint = document.getElementById("help");
+    // Function to render hint.
+      function renderHint() {
+        // If there are still more words, render the next hint.
+        if (hinted <= (hintedArray.length - 1)) {
+          document.querySelector("#hint").innerHTML = hintedArray[hinted][0];
+        }
 
-
-
-    for (var i = 0; i < alphabet.length; i++) {
-      letters.id = 'alphabet';
-      list = document.createElement('li');
-      list.id = 'letter';
-      list.innerHTML = alphabet[i];
-      check();
-      myButtons.appendChild(letters);
-      letters.appendChild(list);
-    }
-  }
-    
-  
-  /* Select Trivia
-  var selectCat = function () {
-    if (chosenCategory === categories[0]) {
-      categoryName.innerHTML = "The Chosen Category Is Premier League Football Teams";
-    } else if (chosenCategory === categories[1]) {
-      categoryName.innerHTML = "The Chosen Category Is Films";
-    } else if (chosenCategory === categories[2]) {
-      categoryName.innerHTML = "The Chosen Category Is Cities";
-    }
-  } */
-
-  // Create guesses ul
-
-   result = function () {
-    wordHolder = document.getElementById('hold');
-    correct = document.createElement('ul');
-
-    for (var i = 0; i < word.length; i++) {
-      correct.setAttribute('id', 'my-word');
-      guess = document.createElement('li');
-      guess.setAttribute('class', 'guess');
-      if (word[i] === "-") {
-        guess.innerHTML = "-";
-        space = 1;
-      } else {
-        guess.innerHTML = "_";
+        // If there aren't, render the end game screen.
+        else {
+          document.querySelector("#hint").innerHTML = "Game Over!";
+          document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + hintedArray.length;
+        }
       }
 
-      guesses.push(guess);
-      wordHolder.appendChild(correct);
-      correct.appendChild(guess);
-    }
-  }
-  
-  // Show Remaining guesses
-   comments = function () {
-   
-    for (var i = 0; i < guesses.length; i++) {
-      if (wins + space === guesses.length) {
-        guessesLeft.innerHTML = "You Win!";
-      }
-    }
-  }
+      // Function to 
 
 
-  // OnClick Function
-   check = function () {
-    list.onclick = function () {
-      var guess = (this.innerHTML);
-      this.setAttribute("class", "active");
-      this.onclick = null;
-      for (var i = 0; i < word.length; i++) {
-        if (word[i] === guess) {
-          guesses[i].innerHTML = guess;
-          wins++;
-        } 
-      }
-      var j = (word.indexOf(guess));
-      if (j === -1) {
-        lives -= 1;
-        comments();
-        animate();
-      } else {
-        comments();
-      }
-    }
-  }
-  
-    
-  // Play
-  play = function () {
-    trivia = [
-        ["gilligan", "ginger", "willy", "schwartz", "roseanne", "hawaii", "globetrotters"],
-    ];
+/*===============================================================*/
+ // CALL FUNCTIONS
 
-    chosenTrivia = categories[Math.floor(Math.random() * trivia.length)];
-    word = chosenTrivia[Math.floor(Math.random() * chosenTrivia.length)];
-    word = word.replace(/\s/g, "-");
-    console.log(word);
-    buttons();
-
-    guesses = [ ];
-    wins = 0;
-    space = 0;
-    result();
-    comments();
-    canvas();
-  }
-
-  play();
-  
-  // Hint
-
-    hint.onclick = function() {
-
-      hints = [
-        ["Jerry Van Dyke turned down this role", "Raquel Welch was almost a great...", "Gilligan's first name", "He made this show AND the Brady Bunch", "Our cast impersonated theirs", "The nearest state to our guestimated island location", "Star in the 3rd reunion movie"],
-    ];
-
-    var triviaIndex = trivia.indexOf(chosenTrivia);
-    var hintIndex = chosenTrivia.indexOf(word);
-    showClue.innerHTML = "Hint: - " +  hint [triviaIndex][hintIndex];
-  };
-
-   // Reset
-
-  document.getElementById('reset').onclick = function() {
-    correct.parentNode.removeChild(correct);
-    letters.parentNode.removeChild(letters);
-    showClue.innerHTML = "";
-    context.clearRect(0, 0, 400, 400);
-    play();
-  }
-}
+//prompt hint
+//prompt letter selection for word
 
 </script>
 
