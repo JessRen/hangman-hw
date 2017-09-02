@@ -22,7 +22,7 @@
    </div>
 
 	<div id="center-start">Gilligan's Island Trivia
-	  <div id="help">Press for Word Hint: </div>
+	  <div id="hint">Press for Word Hint: </div>
     <div id="word"></div>
   </div>
 </div>
@@ -58,7 +58,7 @@ var wordByLetter = {
 //starting with 0 wins
 var wins = 0;
 
-//to hold the index of the current hintedWord
+//to hold the index of the current hinted
 var wordIndex = 0;
 
 //to hold the subject word count (wordByLetter[0].length)
@@ -92,17 +92,7 @@ var wordLettersArray = [wordByLetter.w1,
 
 /*===============================================================*/
 // FUNCTIONS
-
-word.onclick = function () {
-
-  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-        't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-        if 
-  
-
-    // Function to render hint.
+ // Function to render hint.
       function renderHint() {
         // If there are still more words, render the next hint.
         if (hinted <= (hintedArray.length - 1)) {
@@ -115,6 +105,17 @@ word.onclick = function () {
           document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + hintedArray.length;
         }
       }
+
+document.onkeyup = function () {
+
+  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+        't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+        if 
+  
+
+   
 
       // Function to 
 
