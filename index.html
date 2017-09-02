@@ -22,7 +22,7 @@
    </div>
 
 	<div id="center-start">Gilligan's Island Trivia
-	  <div id="hint">Press for Word Hint: </div>
+	  <p id="hint">Click for Word Hint: </div>
     <div id="word"></div>
   </div>
 </div>
@@ -44,6 +44,16 @@ var hinted = {
   "w7": "They star in the 3rd reunion movie"       
 };
 
+//array of words assigned to hints 
+var hintedArray =     [hinted.w1, 
+                       hinted.w2, 
+                       hinted.w3, 
+                       hinted.w4, 
+                       hinted.w5, 
+                       hinted.w6, 
+                       hinted.w7];
+
+//each word's letter-by-letter answer
 var wordByLetter = {
   "w1": ["g","i","l","l","i","g","a","n"],
   "w2": ["g","i","n","g","e","r"],
@@ -53,6 +63,15 @@ var wordByLetter = {
   "w6": ["h","a","w","a","i","i"],
   "w7": ["g","l","o","b","e","t","r","o","t","t","e","r","s"]
 };
+
+//array of letters-in-spaces
+var LettersArray = [wordByLetter.w1, 
+                        wordByLetter.w2, 
+                        wordByLetter.w3, 
+                        wordByLetter.w4, 
+                        wordByLetter.w5, 
+                        wordByLetter.w6,
+                        wordByLetter.w7];
 
 
 //starting with 0 wins
@@ -71,40 +90,33 @@ var guess = 0;
 var guessMore = wordByLetter.length + 4;
 
 
-//array of words assigned to hints 
-var hintedArray =     [hinted.w1, 
-                       hinted.w2, 
-                       hinted.w3, 
-                       hinted.w4, 
-                       hinted.w5, 
-                       hinted.w6, 
-                       hinted.w7];
-
-//array of letters-in-spaces
-var wordLettersArray = [wordByLetter.w1, 
-                        wordByLetter.w2, 
-                        wordByLetter.w3, 
-                        wordByLetter.w4, 
-                        wordByLetter.w5, 
-                        wordByLetter.w6,
-                        wordByLetter.w7];
-
 
 /*===============================================================*/
 // FUNCTIONS
  // Function to render hint.
-      function renderHint() {
+      
+
+
+document.getElementById("hint").onclick = function();
+{renderHint()};
+
+function renderHint() {
         // If there are still more words, render the next hint.
         if (hinted <= (hintedArray.length - 1)) {
-          document.querySelector("#hint").innerHTML = hintedArray[hinted][0];
+          document.getElementById("#hint").innerHTML = hintedArray[hinted][0];
         }
 
         // If there aren't, render the end game screen.
         else {
-          document.querySelector("#hint").innerHTML = "Game Over!";
-          document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + hintedArray.length;
+
+          document.write("Confusion")
+       //   document.querySelector("#hint").innerHTML = "Game Over!";
+       //   document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + hintedArray.length;
         }
       }
+renderHint();
+
+//prompt letter selection for word
 
 document.onkeyup = function () {
 
@@ -114,17 +126,6 @@ document.onkeyup = function () {
 
         if 
   
-
-   
-
-      // Function to 
-
-
-/*===============================================================*/
- // CALL FUNCTIONS
-
-//prompt hint
-//prompt letter selection for word
 
 </script>
 
