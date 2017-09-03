@@ -97,10 +97,9 @@ var guessMore = wordByLetter.length + 4;
       
 
 
-document.getElementById("hint").onclick = function();
-{renderHint()};
+document.getElementById("hint").onclick = function(); {
 
-function renderHint() {
+       renderHint() {
         // If there are still more words, render the next hint.
         if (hinted <= (hintedArray.length - 1)) {
           document.getElementById("#hint").innerHTML = hintedArray[hinted][0];
@@ -114,7 +113,7 @@ function renderHint() {
        //   document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + hintedArray.length;
         }
       }
-renderHint();
+    }
 
 //prompt letter selection for word
 
