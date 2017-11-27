@@ -1,2 +1,2 @@
-# hangman-hw
-First Draft, understood flu delay of about a day
+# Hangman Game
+### 'Vanilla' Javascript utilizing arrays, for loops, conditionals and so forth 
